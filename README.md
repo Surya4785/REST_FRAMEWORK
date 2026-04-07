@@ -1,87 +1,79 @@
-#### Video Tutorial to build this project
-https://youtu.be/SQ4A7Q6_md8
-<br><br>
+# 🚀 REST_FRAMEWORK – Django REST App
 
-#### Upgrades
-- send_confirmation instead of send_email_confirmation (remove the = in the email verification link sent to the terminal)<br>
-- CustomUser Model instead of Default User<br>
-- Global CSRF header for HTMX<br>
-- Option to use UV for Dependency Management<br>
-<br><br>
+REST_FRAMEWORK is a **Django + Django REST Framework based web application** built for learning and implementing **authentication, profile management, modular app architecture, and API integration**.
 
+It is designed as a **portfolio-ready Django project** with reusable apps, clean structure, user management, templates, static assets, and backend API support.
 
-#### Getting the files
-Download zip file<br> 
-or<br>
-run git clone command in empty folder
-```
-git clone https://github.com/andyjud/django-starter.git . && rm -rf .git
-```
-<br><br>
+---
 
+## ✨ Features
 
-## Setup with UV (Recommended)
+### 🔐 Authentication & Users
+- Custom User Model
+- User Registration / Login Flow
+- User Profile Page
+- Edit Profile
+- Delete Profile
+- Account Settings
 
+### 🧩 Core Functionality
+- Modular Django App Structure
+- Home App
+- User Management App
+- API App with Serializers and Views
+- Shared Templates and Layouts
+- Static File Management
 
-##### Install UV
-uv: https://docs.astral.sh/uv/ 
-```
-pip install uv
-```
+### 🌐 API & Backend
+- Django REST Framework Integration
+- API Views
+- Serializers
+- URL Routing
+- Ready for future API expansion
 
-##### Install dependencies
-```
-uv sync
-```
+### 🎨 UI / UX
+- Template-based frontend
+- Reusable layout system
+- Static CSS styling
+- Image and favicon support
+- Beginner-friendly clean structure
 
-##### Activate Virtual Environment (Mac)
-```
-source .venv/bin/activate
-```
+---
 
-##### Migrate to database
-```
-python manage.py migrate
-python manage.py createsuperuser
-```
+## 🛠️ Tech Stack
 
-##### Run application
-```
-python manage.py runserver
-```
-http://localhost:8000
+### Backend
+- Python
+- Django
+- Django REST Framework
 
-<br><br>
+### Frontend
+- HTML
+- CSS
+- Django Templates
 
+### Database
+- SQLite
 
-## Setup with with pip
+### Tools
+- UV / pip
+- Git & GitHub
 
-##### Create Virtual Environment on Mac
-```
-python3 -m venv .venv
-source .venv/bin/activate
-```
+---
 
-##### Create Virtual Environment on Windows
-```
-python3 -m venv .venv
-.\venv\Scripts\Activate.ps1
-```
+## 📂 Project Structure
 
-##### Install dependencies
-```
-pip install -r requirements.txt
-pip install --upgrade pip
-```
-
-##### Migrate to database
-```
-python manage.py migrate
-python manage.py createsuperuser
-```
-
-##### Run application
-```
-python manage.py runserver
-```
-http://localhost:8000
+```bash
+REST_FRAMEWORK/
+│
+├── _core/                     # Main project settings, URLs, ASGI, WSGI
+├── a_api/                     # API app
+├── a_home/                    # Home app
+├── a_users/                   # User management app
+├── static/                    # CSS, images, favicon
+├── templates/                 # Shared templates and layouts
+├── manage.py
+├── requirements.txt
+├── pyproject.toml
+├── uv.lock
+└── README.md
