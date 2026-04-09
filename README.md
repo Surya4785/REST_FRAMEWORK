@@ -1,63 +1,107 @@
-# 🚀 REST_FRAMEWORK – Django REST App
+# 🚀 REST_FRAMEWORK – Django REST Full-Stack App
 
-REST_FRAMEWORK is a **Django + Django REST Framework based web application** built for learning and implementing **authentication, profile management, modular app architecture, and API integration**.
+REST_FRAMEWORK is a **full-stack Django + Django REST Framework application** that demonstrates **custom user management, API development, and dynamic frontend integration**.
 
-It is designed as a **portfolio-ready Django project** with reusable apps, clean structure, user management, templates, static assets, and backend API support.
+It is built as a **portfolio-ready project** showcasing real-world backend concepts like **nested serializers, CRUD APIs, and frontend API consumption using JavaScript**.
 
 ---
 
 ## ✨ Features
 
 ### 🔐 Authentication & Users
-- Custom User Model
-- User Registration / Login Flow
-- User Profile Page
-- Edit Profile
-- Delete Profile
-- Account Settings
+
+* Custom User Model
+* User Registration & Login
+* Profile Page with Avatar
+* Edit & Delete Profile
+* Account Settings
+
+---
 
 ### 🧩 Core Functionality
-- Modular Django App Structure
-- Home App
-- User Management App
-- API App with Serializers and Views
-- Shared Templates and Layouts
-- Static File Management
 
-### 🌐 API & Backend
-- Django REST Framework Integration
-- API Views
-- Serializers
-- URL Routing
-- Ready for future API expansion
+* Modular Django Architecture (Apps-based)
+* Clean project structure
+* Reusable templates & layouts
+* Static file management
 
-### 🎨 UI / UX
-- Template-based frontend
-- Reusable layout system
-- Static CSS styling
-- Image and favicon support
-- Beginner-friendly clean structure
+---
+
+### 🌐 API & Backend (DRF)
+
+* Django REST Framework integration
+* Nested Serializers (User inside Comment)
+* Full CRUD API for Comments:
+
+  * ✅ Create Comment
+  * ✅ Read Comments
+  * ✅ Update Comment
+  * ✅ Delete Comment
+* API endpoints for profiles & comments
+* JSON-based communication
+
+---
+
+### 💬 Comment System (Core Feature)
+
+* Add comment with user selection
+* Edit comment dynamically
+* Delete comment with confirmation
+* Real-time UI update after actions
+
+---
+
+### 🎨 Frontend (Dynamic UI)
+
+* Built using **HTML + CSS + JavaScript**
+* Fetch API for backend communication
+* Black & white minimal UI design
+* Responsive layout
+* Clean typography and card-based UI
+
+---
+
+## 🔗 API Endpoints
+
+### Profiles
+
+```http
+GET /api/profiles/
+```
+
+### Comments
+
+```http
+GET    /api/comments/
+POST   /api/comments/add/
+PATCH  /api/comments/<id>/edit/
+DELETE /api/comments/<id>/delete/
+```
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Backend
-- Python
-- Django
-- Django REST Framework
+
+* Python
+* Django
+* Django REST Framework
 
 ### Frontend
-- HTML
-- CSS
-- Django Templates
+
+* HTML
+* CSS
+* JavaScript (Fetch API)
 
 ### Database
-- SQLite
+
+* SQLite
 
 ### Tools
-- UV / pip
-- Git & GitHub
+
+* Git & GitHub
+* Virtual Environment (venv / uv)
 
 ---
 
@@ -66,14 +110,81 @@ It is designed as a **portfolio-ready Django project** with reusable apps, clean
 ```bash
 REST_FRAMEWORK/
 │
-├── _core/                     # Main project settings, URLs, ASGI, WSGI
-├── a_api/                     # API app
-├── a_home/                    # Home app
-├── a_users/                   # User management app
-├── static/                    # CSS, images, favicon
-├── templates/                 # Shared templates and layouts
+├── _core/         # Main project config (settings, urls)
+├── a_api/         # DRF API (views, serializers, urls)
+├── a_home/        # Frontend views & templates
+├── a_users/       # Custom user model & profile logic
+├── static/        # CSS, images, assets
+├── templates/     # HTML templates
 ├── manage.py
-├── requirements.txt
-├── pyproject.toml
-├── uv.lock
 └── README.md
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+```bash
+# Clone repo
+git clone https://github.com/your-username/REST_FRAMEWORK.git
+cd REST_FRAMEWORK
+
+# Create virtual environment
+python -m venv .venv
+.venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run migrations
+python manage.py migrate
+
+# Start server
+python manage.py runserver
+```
+
+---
+
+## 📸 Demo
+
+👉 Open in browser:
+
+```bash
+http://127.0.0.1:8000/frontend/
+```
+
+* View profiles
+* Add comment
+* Edit comment
+* Delete comment
+
+---
+
+## 🚀 Future Improvements
+
+* 🔐 Authentication-based permissions (only author can edit/delete)
+* 🔍 Search & filtering
+* 📄 Pagination
+* 🌍 Deployment (Render / Railway)
+* 📱 Mobile UI optimization
+
+---
+
+## 💡 What This Project Demonstrates
+
+* Django app architecture
+* REST API design with DRF
+* Nested serializers
+* Full CRUD operations
+* Frontend ↔ Backend integration
+* Clean UI design principles
+
+---
+
+## 👨‍💻 Author
+
+**Surya Prakash Yadav**
+
+---
+
+## ⭐ If you like this project, give it a star on GitHub!
