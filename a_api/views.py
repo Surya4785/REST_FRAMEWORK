@@ -12,16 +12,18 @@ def profiles(request):
     serializer = ProfileSerializer(users, many=True)
     return Response(serializer.data)
 
+
+@api_view(['GET'])
+def comments(request):
+    all_comments = Comment.objects.all().order_by('-id')
+    serializer = CommentSerializer(all_comments, many=True)
+    return Response(serializer.data)
+
+
 @api_view(['POST'])
 def add_comment(request):
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
-    
-@api_view(['GET'])
-def comments(request):
-    comments = Comment.objects.all()
-    serializer = CommentSerializer(comments, many=True)
-    return Response(serializer.data)
-    
+    return Response(serializer.errors)

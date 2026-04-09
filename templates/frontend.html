@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REST Framework Frontend</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #ffffff;
+      min-height: 100vh;
+      padding: 30px 15px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 50px;
+      padding: 30px 10px;
+      border-bottom: 1px solid #222;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #b0b0b0;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.7;
+    }
+
+    .section {
+      margin-bottom: 55px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      color: #fff;
+      border-left: 5px solid #fff;
+      padding-left: 14px;
+    }
+
+    .profiles-grid,
+    .comments-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      border-radius: 20px;
+      padding: 26px;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #ffffff30;
+      box-shadow: 0 12px 28px rgba(255,255,255,0.04);
+    }
+
+    .profile-card {
+      text-align: center;
+    }
+
+    .avatar {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      margin-bottom: 16px;
+      background: #222;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .small-text {
+      display: block;
+      font-size: 0.95rem;
+      color: #9a9a9a;
+      margin-top: 4px;
+    }
+
+    .comment-form-wrapper {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .comment-form input,
+    .comment-form select {
+      padding: 15px 16px;
+      border-radius: 14px;
+      border: 1px solid #2a2a2a;
+      background: #0d0d0d;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s ease, background 0.2s ease;
+    }
+
+    .comment-form input:focus,
+    .comment-form select:focus {
+      border-color: #fff;
+      background: #141414;
+    }
+
+    .comment-form input::placeholder {
+      color: #777;
+    }
+
+    .comment-form button {
+      padding: 15px;
+      border: none;
+      border-radius: 14px;
+      background: #fff;
+      color: #000;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .comment-form button:hover {
+      background: #dcdcdc;
+      transform: scale(1.02);
+    }
+
+    .comment-text {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #f5f5f5;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .comment-author {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    .date {
+      font-size: 0.8rem;
+      color: #7a7a7a;
+      margin-top: 12px;
+      display: block;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 30px;
+      color: #777;
+      font-size: 0.95rem;
+      border-top: 1px solid #1f1f1f;
+      padding-top: 22px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 0.98rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .comment-form-wrapper {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>REST FRAMEWORK FRONTEND</h1>
+      <p>A minimal full-stack Django REST Framework project with clean API integration and modern monochrome UI.</p>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">PROFILES</h2>
+      <div id="profiles" class="profiles-grid"></div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">ADD COMMENT</h2>
+      <div class="comment-form-wrapper">
+        <form id="commentForm" class="comment-form">
+          <input type="text" id="body" placeholder="Write your comment..." required>
+
+          <select id="author" required>
+            <option value="">Select Author</option>
+          </select>
+
+          <button type="submit">POST COMMENT</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">COMMENTS FEED</h2>
+      <div id="comments" class="comments-list"></div>
+    </div>
+
+    <p class="footer-note">Built by Surya using Django REST Framework</p>
+  </div>
+
+  <script>
+    const profilesContainer = document.getElementById("profiles");
+    const commentsContainer = document.getElementById("comments");
+    const commentForm = document.getElementById("commentForm");
+    const bodyInput = document.getElementById("body");
+    const authorSelect = document.getElementById("author");
+
+    async function fetchProfiles() {
+      try {
+        const response = await fetch("/api/profiles/");
+        const profiles = await response.json();
+
+        profilesContainer.innerHTML = "";
+        authorSelect.innerHTML = '<option value="">Select Author</option>';
+
+        profiles.forEach(profile => {
+          profilesContainer.innerHTML += `
+            <div class="card profile-card">
+              <img src="${profile.avatar}" alt="${profile.username}" class="avatar">
+              <h3>${profile.displayname || profile.username}</h3>
+              <span class="small-text">@${profile.username}</span>
+            </div>
+          `;
+
+          authorSelect.innerHTML += `
+            <option value="${profile.id}">
+              ${profile.displayname || profile.username} (@${profile.username})
+            </option>
+          `;
+        });
+      } catch (error) {
+        console.error("Error fetching profiles:", error);
+      }
+    }
+
+    async function fetchComments() {
+      try {
+        const response = await fetch("/api/comments/");
+        const comments = await response.json();
+
+        commentsContainer.innerHTML = "";
+
+        comments.forEach(comment => {
+          commentsContainer.innerHTML += `
+            <div class="card">
+              <p class="comment-text">${comment.body}</p>
+              <div class="comment-author">
+                ${comment.author.displayname || comment.author.username}
+              </div>
+              <span class="small-text">@${comment.author.username}</span>
+              <span class="date">${new Date(comment.created_at).toLocaleString()}</span>
+            </div>
+          `;
+        });
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    }
+
+    commentForm.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const body = bodyInput.value;
+      const author = authorSelect.value;
+
+      try {
+        const response = await fetch("/api/comments/add/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            body: body,
+            author_id: author
+          })
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        bodyInput.value = "";
+        authorSelect.value = "";
+
+        fetchComments();
+      } catch (error) {
+        console.error("Error posting comment:", error);
+      }
+    });
+
+    fetchProfiles();
+    fetchComments();
+  </script>
+</body>
+</html>
